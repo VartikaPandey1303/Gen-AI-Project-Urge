@@ -1,0 +1,10 @@
+{
+    "name": "urge-spending-gauge",
+        "version": "1.0.0",
+        "private": true,
+        "type": "module",
+        "dependencies": {
+          "@google/genai": "^1.0.0",
+                "@supabase/supabase-js": "^2.49.0"
+    }
+}
