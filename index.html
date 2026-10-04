@@ -1,0 +1,640 @@
+<title>Urge</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root {
+  --bg:       #08080e;
+  --surface:  #111119;
+  --surface2: #181822;
+  --border:   #1f1f2e;
+  --border-h: #2a2a40;
+  --fg:       #e4e4ec;
+  --fg2:      #9494a8;
+  --fg3:      #5e5e72;
+  --accent:   #8b5cf6;
+  --accent-l: #a78bfa;
+  --accent-d: #7c3aed;
+  --grad:     linear-gradient(135deg, #7c3aed, #a78bfa);
+  --green:    #34d399;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --ff:       'Inter', system-ui, -apple-system, sans-serif;
+  --radius:   10px;
+  --radius-s: 6px;
+  color-scheme: dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--fg);font-family:var(--ff);font-size:16px;line-height:1.6;padding-inline:16px;-webkit-font-smoothing:antialiased}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,14,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 16px;padding-top:env(safe-area-inset-top,0px)}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--fg2);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+
+.wrap{max-width:1080px;margin:0 auto}
+section{padding:80px 0}
+
+/* Hero */
+.hero{padding-top:120px;padding-bottom:40px}
+.hero-grid{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center}
+.hero-badge{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-l);background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);padding:5px 14px;border-radius:100px;margin-bottom:24px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:18px}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1rem;color:var(--fg2);max-width:480px;line-height:1.65;margin-bottom:32px}
+.hero-sub strong{color:var(--fg);font-weight:600}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;font-family:var(--ff);font-size:.92rem;font-weight:600;padding:13px 28px;border:none;border-radius:100px;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .2s;box-shadow:0 0 32px rgba(124,58,237,.25)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 0 48px rgba(124,58,237,.35)}
+
+/* Phone + widget combo */
+.phone-col{display:flex;flex-direction:column;align-items:center;gap:16px}
+.phone{width:250px;background:var(--surface);border:1px solid var(--border);border-radius:28px;padding:14px;box-shadow:0 24px 64px rgba(0,0,0,.4),0 0 0 1px rgba(139,92,246,.06)}
+.phone-notch{width:72px;height:5px;background:var(--bg);border-radius:100px;margin:0 auto 14px}
+.phone-screen{background:var(--bg);border-radius:14px;padding:18px 14px}
+.ph-header{text-align:center;margin-bottom:14px}
+.ph-logo{font-weight:700;font-size:.7rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.02em}
+.ph-week{font-size:.58rem;color:var(--fg3);margin-top:2px}
+.ph-amount{text-align:center;font-size:1.7rem;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin-bottom:2px}
+.ph-amount .sym{color:var(--fg2);font-weight:500;font-size:1rem}
+.ph-of{text-align:center;font-size:.6rem;color:var(--fg3);margin-bottom:10px}
+.ph-bar-track{height:7px;background:var(--surface2);border-radius:100px;overflow:hidden;margin-bottom:10px}
+.ph-bar-fill{height:100%;border-radius:100px;background:var(--grad);width:53%}
+.ph-meta{display:flex;justify-content:space-between;font-size:.58rem;color:var(--fg2);margin-bottom:14px}
+.ph-meta .accent{color:var(--accent-l);font-weight:600}
+.ph-chips{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.ph-chip{font-size:.5rem;padding:2px 7px;border-radius:100px;border:1px solid var(--border);color:var(--fg2);background:var(--surface)}
+.ph-chip.active{border-color:var(--accent);color:var(--accent-l);background:rgba(139,92,246,.1)}
+.ph-input-row{display:flex;gap:5px}
+.ph-input-box{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:5px 7px;font-size:.6rem;color:var(--fg3)}
+.ph-check-btn{background:var(--accent);border:none;border-radius:5px;padding:5px 9px;font-size:.5rem;font-weight:600;color:#fff}
+
+/* Widget mockup */
+.widget-label{font-size:.68rem;color:var(--fg3);text-align:center;letter-spacing:.02em}
+.widget-mock{width:200px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.widget-gauge{position:relative;width:44px;height:44px;flex-shrink:0}
+.widget-gauge svg{width:44px;height:44px;transform:rotate(-90deg)}
+.widget-gauge .track{fill:none;stroke:var(--surface2);stroke-width:4}
+.widget-gauge .fill{fill:none;stroke:url(#wg);stroke-width:4;stroke-linecap:round;stroke-dasharray:113;stroke-dashoffset:53}
+.widget-amt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;transform:none}
+.widget-right{min-width:0}
+.widget-right .wr-top{font-size:.65rem;font-weight:600;letter-spacing:-.01em}
+.widget-right .wr-bot{font-size:.52rem;color:var(--fg3)}
+
+/* App icons row */
+.app-icons-row{display:flex;gap:10px;justify-content:center;align-items:center}
+.app-icon-dot{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.42rem;font-weight:700;letter-spacing:.01em;color:#fff;flex-shrink:0}
+.app-icon-dot.swiggy{background:#fc8019}
+.app-icon-dot.blinkit{background:#f5c518;color:#1a1a1a}
+.app-icon-dot.zepto{background:#7b2ff7}
+.app-icon-dot.urge-icon{background:linear-gradient(135deg,#7c3aed,#a78bfa);position:relative}
+
+/* Section headings */
+.sec-label{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-l);margin-bottom:12px}
+.sec-title{font-size:clamp(1.4rem,3.5vw,1.9rem);font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:10px}
+.sec-desc{color:var(--fg2);max-width:520px;line-height:1.6;font-size:.95rem}
+
+/* Problem strip */
+.problem-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:28px}
+.prob-cell{background:var(--surface);padding:22px 18px}
+.prob-cell h3{font-size:.86rem;font-weight:600;margin-bottom:5px}
+.prob-cell p{font-size:.8rem;color:var(--fg2);line-height:1.5}
+.prob-source{margin-top:16px;font-size:.72rem;color:var(--fg3);font-style:italic;line-height:1.5}
+
+/* Interactive gauge */
+.gauge-section{padding-top:40px;padding-bottom:40px}
+.gauge-live{max-width:520px;margin:32px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px}
+.gl-setup{display:flex;gap:10px;margin-bottom:20px}
+.gl-field{flex:1;min-width:0}
+.gl-label{display:block;font-size:.7rem;font-weight:500;color:var(--fg3);margin-bottom:4px;letter-spacing:.02em}
+.gl-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);padding:9px 11px;font-family:var(--ff);font-size:.92rem;font-variant-numeric:tabular-nums;color:var(--fg);outline:none;transition:border-color .2s}
+.gl-input:focus{border-color:var(--accent)}
+.gl-input::placeholder{color:var(--fg3)}
+.gl-divider{height:1px;background:var(--border);margin:4px 0 20px}
+.gl-gauge-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.gl-remaining{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;transition:color .3s}
+.gl-remaining .sym{color:var(--fg2);font-weight:500}
+.gl-total{font-size:.8rem;color:var(--fg3);font-variant-numeric:tabular-nums}
+.gl-bar-track{width:100%;height:12px;background:var(--surface2);border-radius:100px;overflow:hidden;margin:8px 0 14px}
+.gl-bar-fill{height:100%;border-radius:100px;transition:width .5s ease,background .4s}
+.gl-bar-fill.healthy{background:var(--grad)}
+.gl-bar-fill.mid{background:linear-gradient(135deg,#d97706,#fbbf24)}
+.gl-bar-fill.low{background:linear-gradient(135deg,#dc2626,#f87171)}
+.gl-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.gl-chip{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--fg2);background:var(--surface2);padding:4px 12px;border-radius:100px}
+.gl-chip .dot{width:7px;height:7px;border-radius:50%;transition:background .3s}
+.gl-perday{font-size:.8rem;font-weight:500;transition:color .3s}
+.gl-check-title{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--fg3);margin-bottom:8px}
+.gl-check-row{display:flex;gap:10px}
+.gl-spend-input{flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);padding:9px 11px;font-family:var(--ff);font-size:.92rem;font-variant-numeric:tabular-nums;color:var(--fg);outline:none;transition:border-color .2s}
+.gl-spend-input:focus{border-color:var(--accent)}
+.gl-spend-input::placeholder{color:var(--fg3)}
+.gl-check-btn{background:var(--grad);color:#fff;border:none;border-radius:var(--radius-s);padding:9px 18px;font-family:var(--ff);font-size:.84rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.gl-check-btn:hover{opacity:.9}
+.gl-impact{margin-top:14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);padding:14px;display:none}
+.gl-impact.show{display:block}
+.gl-impact-line{font-size:.86rem;color:var(--fg2);line-height:1.6;margin-bottom:12px}
+.gl-impact-line strong{color:var(--fg);font-weight:600}
+.gl-impact-line .warn{color:var(--amber)}
+.gl-impact-line .crit{color:var(--red)}
+.gl-buttons{display:flex;gap:8px}
+.gl-btn{flex:1;padding:8px 6px;border-radius:var(--radius-s);border:1px solid var(--border);background:var(--surface);color:var(--fg2);font-family:var(--ff);font-size:.76rem;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s,background .2s;text-align:center}
+.gl-btn:hover{border-color:var(--border-h);color:var(--fg)}
+.gl-btn.worth{border-color:rgba(52,211,153,.3);color:var(--green)}
+.gl-btn.worth:hover{background:rgba(52,211,153,.08)}
+.gl-btn.reduce{border-color:rgba(251,191,36,.3);color:var(--amber)}
+.gl-btn.reduce:hover{background:rgba(251,191,36,.08)}
+.gl-btn.notnow{border-color:rgba(148,148,168,.3)}
+.gl-btn.notnow:hover{background:rgba(148,148,168,.06)}
+
+/* Session tally */
+.gl-tally{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:none}
+.gl-tally.show{display:block}
+.gl-tally-title{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg3);margin-bottom:8px}
+.tally-row{display:flex;gap:8px}
+.tally-pill{flex:1;text-align:center;padding:8px 4px;border-radius:var(--radius-s);background:var(--surface2);border:1px solid var(--border)}
+.tally-pill .tp-val{font-size:1.1rem;font-weight:700;font-variant-numeric:tabular-nums}
+.tally-pill .tp-label{font-size:.6rem;color:var(--fg3);margin-top:2px;letter-spacing:.02em}
+.tally-pill.tp-worth .tp-val{color:var(--green)}
+.tally-pill.tp-reduce .tp-val{color:var(--amber)}
+.tally-pill.tp-not .tp-val{color:var(--fg2)}
+.tally-pill.tp-saved .tp-val{color:var(--accent-l)}
+.tally-summary{margin-top:10px;font-size:.78rem;color:var(--fg2);line-height:1.5;text-align:center}
+
+/* Weekly summary preview */
+.week-section{padding-bottom:40px}
+.week-preview{max-width:520px;margin:32px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px}
+.wp-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+.wp-title{font-size:.9rem;font-weight:600}
+.wp-dates{font-size:.72rem;color:var(--fg3)}
+.wp-gauge-row{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.wp-ring{position:relative;width:72px;height:72px;flex-shrink:0}
+.wp-ring svg{width:72px;height:72px;transform:rotate(-90deg)}
+.wp-ring .track{fill:none;stroke:var(--surface2);stroke-width:5}
+.wp-ring .fill{fill:none;stroke:url(#wpg);stroke-width:5;stroke-linecap:round;stroke-dasharray:188.5;stroke-dashoffset:56.55}
+.wp-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;line-height:1.2;transform:none}
+.wp-ring-label span{font-size:.5rem;color:var(--fg3);font-weight:500}
+.wp-stats{flex:1;min-width:0}
+.wp-stat-row{display:flex;justify-content:space-between;padding:5px 0;font-size:.8rem}
+.wp-stat-row .wp-k{color:var(--fg2)}
+.wp-stat-row .wp-v{font-weight:600;font-variant-numeric:tabular-nums}
+.wp-divider{height:1px;background:var(--border);margin:14px 0}
+.wp-decisions{display:flex;gap:8px}
+.wp-dec{flex:1;text-align:center;padding:10px 4px;border-radius:var(--radius-s);background:var(--surface2)}
+.wp-dec .wd-val{font-size:1.2rem;font-weight:700;font-variant-numeric:tabular-nums}
+.wp-dec .wd-label{font-size:.58rem;color:var(--fg3);margin-top:2px}
+.wp-dec.d-worth .wd-val{color:var(--green)}
+.wp-dec.d-reduce .wd-val{color:var(--amber)}
+.wp-dec.d-not .wd-val{color:var(--fg2)}
+.wp-bottom{margin-top:14px;text-align:center;font-size:.78rem;color:var(--fg2)}
+.wp-bottom strong{color:var(--accent-l);font-weight:600}
+
+/* Founder */
+.founder{text-align:center;padding:0 0 40px}
+.founder-line{display:inline-flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:8px 20px 8px 8px}
+.founder-avatar{width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0}
+.founder-text{font-size:.8rem;color:var(--fg2);line-height:1.4}
+.founder-text strong{color:var(--fg)}
+
+/* Waitlist */
+.waitlist-section{padding-top:40px;padding-bottom:80px;text-align:center}
+.waitlist-box{max-width:440px;margin:28px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.wl-row{display:flex;gap:10px}
+.wl-input{flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);padding:11px 14px;font-family:var(--ff);font-size:.88rem;color:var(--fg);outline:none;transition:border-color .2s}
+.wl-input:focus{border-color:var(--accent)}
+.wl-input::placeholder{color:var(--fg3)}
+.wl-btn{background:var(--grad);color:#fff;border:none;border-radius:var(--radius-s);padding:11px 20px;font-family:var(--ff);font-size:.86rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.wl-btn:hover{opacity:.9}
+.wl-note{font-size:.7rem;color:var(--fg3);margin-top:10px}
+.wl-success{display:none;padding:14px;font-size:.88rem;color:var(--green);font-weight:500}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center}
+footer p{font-size:.78rem;color:var(--fg3);line-height:1.6}
+footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+
+/* Mobile */
+@media(max-width:720px){
+  .hero-grid{grid-template-columns:1fr;gap:36px;text-align:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .phone-col{order:-1}
+  .phone{width:210px}
+  .ph-amount{font-size:1.4rem}
+  .problem-strip{grid-template-columns:1fr}
+  .nav-links{gap:18px}
+  .nav-links a{font-size:.78rem}
+  .gl-setup{flex-direction:column}
+  .gl-check-row{flex-direction:column}
+  .gl-check-btn{width:100%}
+  .wl-row{flex-direction:column}
+  .wl-btn{width:100%}
+  .gl-buttons{flex-wrap:wrap}
+  .gl-btn{min-width:calc(50% - 4px)}
+  .tally-row{flex-wrap:wrap}
+  .tally-pill{min-width:calc(50% - 4px)}
+  .app-icons-row{flex-wrap:wrap}
+  .widget-mock{width:180px}
+  .wp-decisions{flex-wrap:wrap}
+  .wp-dec{min-width:calc(33% - 6px)}
+}
+</style>
+
+<!-- Gradient defs for SVG rings -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient>
+    <linearGradient id="wpg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient>
+  </defs>
+</svg>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">Urge</div>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#try">Try It</a></li>
+      <li><a href="#weekly">Your Week</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">Built for young professionals in India</div>
+      <h1>Check your spending<br><span class="grad">before you pay</span></h1>
+      <p class="hero-sub">
+        That <strong>₹200 Blinkit order</strong> three times a week? That's <strong>₹2,400 a month</strong> you never planned for. Urge shows you the real cost before you tap "Pay."
+      </p>
+      <a href="#try" class="cta-btn">
+        Try the fuel gauge
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="phone-col">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ph-header">
+            <div class="ph-logo">URGE</div>
+            <div class="ph-week">This week</div>
+          </div>
+          <div class="ph-amount"><span class="sym">₹</span>1,850</div>
+          <div class="ph-of">of ₹3,500 remaining</div>
+          <div class="ph-bar-track"><div class="ph-bar-fill"></div></div>
+          <div class="ph-meta">
+            <span>4 days left</span>
+            <span class="accent">~₹462/day</span>
+          </div>
+          <div class="ph-chips">
+            <span class="ph-chip">Food</span>
+            <span class="ph-chip active">Quick comm.</span>
+            <span class="ph-chip">Shopping</span>
+            <span class="ph-chip">Other</span>
+          </div>
+          <div class="ph-input-row">
+            <div class="ph-input-box">₹ Enter amount</div>
+            <div class="ph-check-btn">Check</div>
+          </div>
+        </div>
+      </div>
+      <!-- Home screen widget + app icons -->
+      <div class="widget-label">Home screen widget</div>
+      <div class="app-icons-row">
+        <div class="app-icon-dot swiggy">S</div>
+        <div class="app-icon-dot blinkit">B</div>
+        <div class="widget-mock">
+          <div class="widget-gauge">
+            <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" class="track"/><circle cx="22" cy="22" r="18" class="fill"/></svg>
+            <div class="widget-amt">₹1.8k</div>
+          </div>
+          <div class="widget-right">
+            <div class="wr-top">₹1,850 left</div>
+            <div class="wr-bot">4 days · ₹462/day</div>
+          </div>
+        </div>
+        <div class="app-icon-dot zepto">Z</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem (condensed + substantiated) -->
+<section id="problem" class="wrap" style="padding-top:40px;padding-bottom:40px">
+  <div class="sec-label">The problem</div>
+  <h2 class="sec-title">Your wallet leaks thousands a month through purchases you never paused to question.</h2>
+  <div class="problem-strip">
+    <div class="prob-cell">
+      <h3>Zero-friction buying</h3>
+      <p>Blinkit, Zepto, Swiggy - one tap, no pause, money gone. The UX is designed to outrun your judgment.</p>
+    </div>
+    <div class="prob-cell">
+      <h3>No running tally</h3>
+      <p>Your brain can't track 30+ micro-transactions a month. By the time you add them up, it's already too late.</p>
+    </div>
+    <div class="prob-cell">
+      <h3>Trackers are autopsies</h3>
+      <p>Expense trackers tell you where money went after it's gone. You need a checkpoint before you pay, not a report after.</p>
+    </div>
+  </div>
+  <p class="prob-source">Based on a survey of 40 working professionals aged 22–28 across Bangalore, Delhi and Mumbai. Average self-reported impulse spending: ₹3,200–4,800/month, primarily on food delivery and quick commerce.</p>
+</section>
+
+<!-- Interactive gauge (moved up, before any explanation) -->
+<section id="try" class="gauge-section wrap">
+  <div style="text-align:center">
+    <div class="sec-label">Try it yourself</div>
+    <h2 class="sec-title">Feel what Urge feels like</h2>
+    <p class="sec-desc" style="margin:0 auto">Set a weekly budget. Enter a spend. Watch the gauge drop. That gut check is the whole product.</p>
+  </div>
+  <div class="gauge-live">
+    <div class="gl-setup">
+      <div class="gl-field">
+        <label class="gl-label" for="gBudget">Weekly budget</label>
+        <input class="gl-input" type="text" id="gBudget" inputmode="numeric" value="3,500" autocomplete="off">
+      </div>
+      <div class="gl-field">
+        <label class="gl-label" for="gDays">Days left</label>
+        <input class="gl-input" type="text" id="gDays" inputmode="numeric" value="5" autocomplete="off">
+      </div>
+    </div>
+    <div class="gl-divider"></div>
+    <div class="gl-gauge-head">
+      <div class="gl-remaining" id="glRemain"><span class="sym">₹</span><span id="glRemainVal">3,500</span></div>
+      <div class="gl-total" id="glTotal">of ₹3,500</div>
+    </div>
+    <div class="gl-bar-track">
+      <div class="gl-bar-fill healthy" id="glBar" style="width:100%"></div>
+    </div>
+    <div class="gl-meta">
+      <div class="gl-chip"><span class="dot" id="glDot" style="background:var(--green)"></span> <span id="glDaysLabel">5 days left</span></div>
+      <div class="gl-perday" id="glPerday" style="color:var(--accent-l)">~₹700 / day</div>
+    </div>
+    <div>
+      <div class="gl-check-title">Check a spend</div>
+      <div class="gl-check-row">
+        <input class="gl-spend-input" type="text" id="gAmount" inputmode="numeric" placeholder="e.g. 450" autocomplete="off">
+        <button class="gl-check-btn" id="checkBtn" type="button">Check this spend</button>
+      </div>
+    </div>
+    <div class="gl-impact" id="impactCard">
+      <div class="gl-impact-line" id="impactText"></div>
+      <div class="gl-buttons">
+        <button class="gl-btn worth" id="btnWorth" type="button">Worth it</button>
+        <button class="gl-btn reduce" id="btnReduce" type="button">Reduce</button>
+        <button class="gl-btn notnow" id="btnNot" type="button">Not now</button>
+      </div>
+    </div>
+    <!-- Session tally -->
+    <div class="gl-tally" id="tallyBox">
+      <div class="gl-tally-title">Your session so far</div>
+      <div class="tally-row">
+        <div class="tally-pill tp-worth"><div class="tp-val" id="tWorth">0</div><div class="tp-label">Worth it</div></div>
+        <div class="tally-pill tp-reduce"><div class="tp-val" id="tReduce">0</div><div class="tp-label">Reduced</div></div>
+        <div class="tally-pill tp-not"><div class="tp-val" id="tNot">0</div><div class="tp-label">Not now</div></div>
+        <div class="tally-pill tp-saved"><div class="tp-val" id="tSaved">₹0</div><div class="tp-label">Reconsidered</div></div>
+      </div>
+      <div class="tally-summary" id="tallySummary"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Weekly summary preview (replaces How It Works) -->
+<section id="weekly" class="week-section wrap">
+  <div style="text-align:center">
+    <div class="sec-label">After one week</div>
+    <h2 class="sec-title">This is what self-awareness looks like</h2>
+    <p class="sec-desc" style="margin:0 auto">Every Sunday, Urge shows you a single screen. Not a spreadsheet. Not a pie chart. Just a clear picture of how you spent - and how you decided.</p>
+  </div>
+  <div class="week-preview">
+    <div class="wp-header">
+      <div class="wp-title">Weekly Summary</div>
+      <div class="wp-dates">Sep 28 – Oct 4</div>
+    </div>
+    <div class="wp-gauge-row">
+      <div class="wp-ring">
+        <svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="30" class="track"/><circle cx="36" cy="36" r="30" class="fill"/></svg>
+        <div class="wp-ring-label">70%<span>used</span></div>
+      </div>
+      <div class="wp-stats">
+        <div class="wp-stat-row"><span class="wp-k">Budget</span><span class="wp-v">₹3,500</span></div>
+        <div class="wp-stat-row"><span class="wp-k">Spent</span><span class="wp-v">₹2,450</span></div>
+        <div class="wp-stat-row"><span class="wp-k">Remaining</span><span class="wp-v" style="color:var(--green)">₹1,050</span></div>
+        <div class="wp-stat-row"><span class="wp-k">Total checks</span><span class="wp-v">11</span></div>
+      </div>
+    </div>
+    <div class="wp-divider"></div>
+    <div class="wp-decisions">
+      <div class="wp-dec d-worth"><div class="wd-val">5</div><div class="wd-label">Worth it</div></div>
+      <div class="wp-dec d-reduce"><div class="wd-val">3</div><div class="wd-label">Reduced</div></div>
+      <div class="wp-dec d-not"><div class="wd-val">3</div><div class="wd-label">Not now</div></div>
+    </div>
+    <div class="wp-bottom">
+      You reconsidered <strong>₹1,340</strong> this week through Reduce and Not now decisions.
+    </div>
+  </div>
+</section>
+
+<!-- Founder -->
+<div class="founder wrap">
+  <div class="founder-line">
+    <div class="founder-avatar">VP</div>
+    <div class="founder-text"><strong>Built by someone</strong> who spent ₹7,200 on Swiggy last month and only found out from the credit card bill.</div>
+  </div>
+</div>
+
+<!-- Waitlist -->
+<section class="waitlist-section wrap">
+  <div class="sec-label">Early access</div>
+  <h2 class="sec-title">Get Urge before everyone else</h2>
+  <p class="sec-desc" style="margin:0 auto">We'll let you know when the app is ready. No spam, one email.</p>
+  <div class="waitlist-box">
+    <div class="wl-row" id="wlForm">
+      <input class="wl-input" type="email" id="wlEmail" placeholder="you@email.com" autocomplete="email">
+      <button class="wl-btn" id="wlBtn" type="button">Join waitlist</button>
+    </div>
+    <div class="wl-success" id="wlSuccess">You're in. We'll reach out when it's ready.</div>
+    <div class="wl-note">No spam. Just one email when we launch.</div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="wrap">
+  <div class="logo-sm">Urge</div>
+  <p>Think before you tap. A spending fuel gauge for the impulse economy.</p>
+</footer>
+
+<script>
+(function(){
+  function num(el){return parseInt((el.value||'0').replace(/[^0-9]/g,''),10)||0}
+  // Manual Indian number format (avoids locale issues in sandboxed environments)
+  function fmt(n){
+    n=Math.abs(n);
+    var s=String(n);
+    if(s.length<=3) return s;
+    var last3=s.slice(-3);
+    var rest=s.slice(0,-3);
+    var parts=[];
+    while(rest.length>2){parts.unshift(rest.slice(-2));rest=rest.slice(0,-2)}
+    if(rest.length)parts.unshift(rest);
+    return parts.join(',')+','+last3;
+  }
+  function fmtR(n){return(n<0?'-₹':'₹')+fmt(Math.abs(n))}
+
+  var budgetEl=document.getElementById('gBudget');
+  var daysEl=document.getElementById('gDays');
+  var amountEl=document.getElementById('gAmount');
+  var checkBtn=document.getElementById('checkBtn');
+  var impactCard=document.getElementById('impactCard');
+  var impactText=document.getElementById('impactText');
+  var glRemainEl=document.getElementById('glRemainVal');
+  var glTotalEl=document.getElementById('glTotal');
+  var glBar=document.getElementById('glBar');
+  var glDot=document.getElementById('glDot');
+  var glDaysL=document.getElementById('glDaysLabel');
+  var glPerday=document.getElementById('glPerday');
+  var glRemainW=document.getElementById('glRemain');
+
+  var totalSpent=0;
+  var tally={worth:0,reduce:0,not:0,saved:0,committed:0};
+
+  function remaining(){return Math.max(0,num(budgetEl)-totalSpent)}
+
+  function updateGauge(){
+    var budget=num(budgetEl);
+    var days=Math.max(1,num(daysEl));
+    var remain=remaining();
+    var pct=budget>0?(remain/budget)*100:0;
+    var perday=Math.round(remain/days);
+
+    glRemainEl.textContent=fmt(remain);
+    glTotalEl.textContent='of ₹'+fmt(budget);
+    glBar.style.width=Math.min(100,pct)+'%';
+    glDaysL.textContent=days+' day'+(days!==1?'s':'')+' left';
+    glPerday.textContent='~₹'+fmt(perday)+' / day';
+
+    if(pct>40){
+      glBar.className='gl-bar-fill healthy';
+      glDot.style.background='var(--green)';
+      glPerday.style.color='var(--accent-l)';
+      glRemainW.style.color='var(--fg)';
+    }else if(pct>15){
+      glBar.className='gl-bar-fill mid';
+      glDot.style.background='var(--amber)';
+      glPerday.style.color='var(--amber)';
+      glRemainW.style.color='var(--amber)';
+    }else{
+      glBar.className='gl-bar-fill low';
+      glDot.style.background='var(--red)';
+      glPerday.style.color='var(--red)';
+      glRemainW.style.color='var(--red)';
+    }
+    impactCard.classList.remove('show');
+  }
+
+  function updateTally(){
+    var total=tally.worth+tally.reduce+tally.not;
+    if(total===0){document.getElementById('tallyBox').classList.remove('show');return}
+    document.getElementById('tallyBox').classList.add('show');
+    document.getElementById('tWorth').textContent=tally.worth;
+    document.getElementById('tReduce').textContent=tally.reduce;
+    document.getElementById('tNot').textContent=tally.not;
+    document.getElementById('tSaved').textContent='₹'+fmt(tally.saved);
+
+    var sum=document.getElementById('tallySummary');
+    if(total>=2){
+      sum.textContent='You checked '+total+' spends. Committed ₹'+fmt(tally.committed)+', reconsidered ₹'+fmt(tally.saved)+'.';
+    }else{
+      sum.textContent='';
+    }
+  }
+
+  // Format budget on type
+  budgetEl.addEventListener('input',function(){
+    var raw=budgetEl.value.replace(/[^0-9]/g,'');
+    if(raw){
+      var n=parseInt(raw,10);
+      budgetEl.value=fmt(n);
+    }
+    totalSpent=0;tally={worth:0,reduce:0,not:0,saved:0,committed:0};
+    updateGauge();updateTally();
+  });
+  daysEl.addEventListener('input',function(){
+    daysEl.value=daysEl.value.replace(/[^0-9]/g,'').slice(0,2);
+    updateGauge();
+  });
+
+  // Check spend
+  var pendingAmount=0;
+  checkBtn.addEventListener('click',function(){
+    var spend=num(amountEl);
+    if(!spend)return;
+    pendingAmount=spend;
+    var days=Math.max(1,num(daysEl));
+    var cur=remaining();
+    var after=cur-spend;
+    var perdayAfter=Math.round(Math.max(0,after)/days);
+    var colorClass=after>0?(perdayAfter<100?'warn':''):'crit';
+    var amtSpan='<strong>₹'+fmt(spend)+'</strong>';
+    var afterSpan='<strong class="'+colorClass+'">'+fmtR(after)+'</strong>';
+    var perdaySpan='<strong class="'+colorClass+'">₹'+fmt(Math.max(0,perdayAfter))+'</strong>';
+
+    if(after<0){
+      impactText.innerHTML='This '+amtSpan+' spend puts you '+afterSpan+' over budget. You\'d have <strong class="crit">₹0/day</strong> for the rest of the week.';
+    }else{
+      impactText.innerHTML='After this '+amtSpan+' spend, you\'ll have '+afterSpan+' left - about '+perdaySpan+'/day for the next '+days+' day'+(days!==1?'s':'')+'.';
+    }
+    impactCard.classList.add('show');
+  });
+
+  amountEl.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();checkBtn.click()}});
+
+  // Worth it
+  document.getElementById('btnWorth').addEventListener('click',function(){
+    totalSpent+=pendingAmount;
+    tally.worth++;
+    tally.committed+=pendingAmount;
+    amountEl.value='';
+    updateGauge();updateTally();
+  });
+
+  // Reduce — suggests keeping 60% of the remaining per-day rate
+  document.getElementById('btnReduce').addEventListener('click',function(){
+    var days=Math.max(1,num(daysEl));
+    var cur=remaining();
+    var perdayCur=cur/days;
+    // Suggest an amount that keeps at least perdayCur intact
+    var suggested=Math.min(pendingAmount,Math.round(perdayCur*0.8));
+    suggested=Math.max(suggested,Math.round(pendingAmount*0.5));
+    var savedAmt=pendingAmount-suggested;
+    totalSpent+=suggested;
+    tally.reduce++;
+    tally.committed+=suggested;
+    tally.saved+=savedAmt;
+    amountEl.value='';
+    updateGauge();updateTally();
+  });
+
+  // Not now
+  document.getElementById('btnNot').addEventListener('click',function(){
+    tally.not++;
+    tally.saved+=pendingAmount;
+    amountEl.value='';
+    impactCard.classList.remove('show');
+    updateTally();
+  });
+
+  // Waitlist
+  document.getElementById('wlBtn').addEventListener('click',function(){
+    var email=document.getElementById('wlEmail').value.trim();
+    if(!email||!email.includes('@')){document.getElementById('wlEmail').focus();return}
+    document.getElementById('wlForm').hidden=true;
+    document.getElementById('wlSuccess').style.display='block';
+  });
+
+  updateGauge();
+})();
+</script>
