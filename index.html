@@ -84,10 +84,8 @@ section{padding:80px 0}
 
 /* App icons row */
 .app-icons-row{display:flex;gap:10px;justify-content:center;align-items:center}
-.app-icon-dot{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.42rem;font-weight:700;letter-spacing:.01em;color:#fff;flex-shrink:0}
-.app-icon-dot.swiggy{background:#fc8019}
-.app-icon-dot.blinkit{background:#f5c518;color:#1a1a1a}
-.app-icon-dot.zepto{background:#7b2ff7}
+.app-icon-dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.app-icon-dot svg{width:100%;height:100%}
 .app-icon-dot.urge-icon{background:linear-gradient(135deg,#7c3aed,#a78bfa);position:relative}
 
 /* Section headings */
@@ -304,8 +302,8 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
       <!-- Home screen widget + app icons -->
       <div class="widget-label">Home screen widget</div>
       <div class="app-icons-row">
-        <div class="app-icon-dot swiggy">S</div>
-        <div class="app-icon-dot blinkit">B</div>
+        <div class="app-icon-dot swiggy"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="0" fill="#fc8019"/><text x="22" y="18" text-anchor="middle" fill="#fff" font-family="Inter,system-ui,sans-serif" font-size="8" font-weight="800">Swiggy</text><circle cx="22" cy="29" r="6" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M19 29c0-1.7 1.3-3 3-3s3 1.3 3 3" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="27" r="1" fill="#fff"/></svg></div>
+        <div class="app-icon-dot blinkit"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="0" fill="#f5c518"/><text x="22" y="17" text-anchor="middle" fill="#1a1a1a" font-family="Inter,system-ui,sans-serif" font-size="7" font-weight="800">blinkit</text><rect x="13" y="22" width="18" height="13" rx="2" fill="none" stroke="#1a1a1a" stroke-width="1.5"/><path d="M17 22v-2a5 5 0 0 1 10 0v2" fill="none" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="22" cy="29" r="1.5" fill="#1a1a1a"/></svg></div>
         <div class="widget-mock">
           <div class="widget-gauge">
             <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" class="track"/><circle cx="22" cy="22" r="18" class="fill"/></svg>
@@ -316,7 +314,7 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
             <div class="wr-bot">4 days · ₹462/day</div>
           </div>
         </div>
-        <div class="app-icon-dot zepto">Z</div>
+        <div class="app-icon-dot zepto"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="0" fill="#7b2ff7"/><text x="22" y="17" text-anchor="middle" fill="#fff" font-family="Inter,system-ui,sans-serif" font-size="7.5" font-weight="800">Zepto</text><path d="M14 24h16l-10 12h16" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
   </div>
