@@ -1,4 +1,10 @@
-<title>Urge</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urge — Spending Fuel Gauge for Young Professionals</title>
+<meta name="description" content="Check your spending before you pay. Urge is a spending fuel gauge app for young Indian professionals.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
 :root {
@@ -37,8 +43,16 @@ body{background:var(--bg);color:var(--fg);font-family:var(--ff);font-size:16px;l
 .wrap{max-width:1080px;margin:0 auto}
 section{padding:80px 0}
 
+/* Stats Banner */
+.stats-banner{position:fixed;top:56px;left:0;right:0;z-index:99;background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px}
+.stats-banner-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:32px;height:36px}
+.stat-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--fg2)}
+.stat-item .stat-val{font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums;font-size:.76rem}
+.stat-item .stat-label{color:var(--fg3)}
+.stat-sep{width:1px;height:14px;background:var(--border)}
+
 /* Hero */
-.hero{padding-top:120px;padding-bottom:40px}
+.hero{padding-top:156px;padding-bottom:40px}
 .hero-grid{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center}
 .hero-badge{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-l);background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);padding:5px 14px;border-radius:100px;margin-bottom:24px}
 .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:18px}
@@ -160,6 +174,71 @@ section{padding:80px 0}
 .tally-pill.tp-saved .tp-val{color:var(--accent-l)}
 .tally-summary{margin-top:10px;font-size:.78rem;color:var(--fg2);line-height:1.5;text-align:center}
 
+/* AI Plan Section */
+.ai-plan-section{padding-top:40px;padding-bottom:60px}
+.ai-plan-card{max-width:600px;margin:32px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px}
+.ai-form-group{margin-bottom:18px}
+.ai-form-group label{display:block;font-size:.78rem;font-weight:600;color:var(--fg2);margin-bottom:6px;letter-spacing:.02em}
+.ai-input-wrap{position:relative;display:flex;align-items:center}
+.ai-input-wrap .rupee-prefix{position:absolute;left:12px;font-size:.92rem;color:var(--fg3);pointer-events:none;font-weight:500}
+.ai-input-wrap input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);padding:11px 14px 11px 28px;font-family:var(--ff);font-size:.95rem;font-variant-numeric:tabular-nums;color:var(--fg);outline:none;transition:border-color .2s}
+.ai-input-wrap input:focus{border-color:var(--accent)}
+.ai-input-wrap input::placeholder{color:var(--fg3)}
+
+.ai-slider-group{margin-bottom:14px}
+.ai-slider-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.ai-slider-label{font-size:.78rem;font-weight:500;color:var(--fg2)}
+.ai-slider-val{font-size:.78rem;font-weight:700;color:var(--accent-l);font-variant-numeric:tabular-nums;min-width:36px;text-align:right}
+.ai-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;background:var(--surface2);border-radius:100px;outline:none;cursor:pointer}
+.ai-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);border:2px solid var(--accent-l);cursor:pointer;box-shadow:0 0 8px rgba(139,92,246,.3);transition:box-shadow .2s}
+.ai-slider::-webkit-slider-thumb:hover{box-shadow:0 0 16px rgba(139,92,246,.5)}
+.ai-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:2px solid var(--accent-l);cursor:pointer;box-shadow:0 0 8px rgba(139,92,246,.3)}
+.ai-slider::-webkit-slider-runnable-track{height:6px;border-radius:100px}
+.ai-slider::-moz-range-track{height:6px;border-radius:100px;background:var(--surface2)}
+
+.ai-remaining{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);margin-bottom:20px;font-size:.82rem}
+.ai-remaining .ai-rem-label{color:var(--fg2)}
+.ai-remaining .ai-rem-val{font-weight:700;font-variant-numeric:tabular-nums}
+.ai-remaining.over .ai-rem-val{color:var(--red)}
+.ai-remaining.ok .ai-rem-val{color:var(--green)}
+.ai-remaining.warn .ai-rem-val{color:var(--amber)}
+
+.ai-generate-btn{width:100%;background:var(--grad);color:#fff;border:none;border-radius:var(--radius-s);padding:14px 24px;font-family:var(--ff);font-size:.95rem;font-weight:600;cursor:pointer;transition:opacity .15s,transform .15s;box-shadow:0 0 24px rgba(124,58,237,.2);display:flex;align-items:center;justify-content:center;gap:10px}
+.ai-generate-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
+.ai-generate-btn:disabled{opacity:.6;cursor:not-allowed}
+
+/* Spinner */
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:none}
+.spinner.show{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* AI Error */
+.ai-error{margin-top:14px;padding:12px 14px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:var(--radius-s);font-size:.84rem;color:var(--red);display:none;line-height:1.5}
+.ai-error.show{display:block}
+
+/* Plan Result */
+.plan-result{margin-top:28px;display:none}
+.plan-result.show{display:block}
+.plan-summary{font-size:.92rem;color:var(--fg2);line-height:1.7;margin-bottom:22px;padding:16px;background:var(--surface2);border-radius:var(--radius-s);border-left:3px solid var(--accent)}
+.plan-cuts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.cut-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);padding:16px}
+.cut-card-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.cut-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cut-category{font-size:.82rem;font-weight:600;color:var(--fg)}
+.cut-action{font-size:.8rem;color:var(--fg2);line-height:1.5;margin-bottom:10px}
+.cut-amount{font-size:.88rem;font-weight:700;color:var(--accent-l)}
+
+.plan-fuel-line{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(167,139,250,.08));border:1px solid rgba(139,92,246,.25);border-radius:var(--radius-s);padding:18px;text-align:center;margin-bottom:18px}
+.plan-fuel-line .fuel-text{font-size:1.05rem;font-weight:600;color:var(--fg);line-height:1.5}
+
+.plan-totals{display:flex;gap:12px;margin-bottom:18px}
+.plan-total-card{flex:1;text-align:center;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-s);padding:14px 10px}
+.plan-total-card .pt-val{font-size:1.3rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent-l)}
+.plan-total-card .pt-label{font-size:.68rem;color:var(--fg3);margin-top:4px;letter-spacing:.02em}
+.plan-total-card.daily .pt-val{color:var(--green)}
+
+.plan-disclaimer{font-size:.7rem;color:var(--fg3);line-height:1.5;font-style:italic;text-align:center}
+
 /* Weekly summary preview */
 .week-section{padding-bottom:40px}
 .week-preview{max-width:520px;margin:32px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px}
@@ -235,8 +314,14 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
   .widget-mock{width:180px}
   .wp-decisions{flex-wrap:wrap}
   .wp-dec{min-width:calc(33% - 6px)}
+  .stats-banner-inner{gap:16px;flex-wrap:wrap;height:auto;padding:6px 0}
+  .stat-sep{display:none}
+  .plan-cuts{grid-template-columns:1fr}
+  .plan-totals{flex-direction:column}
 }
 </style>
+</head>
+<body>
 
 <!-- Gradient defs for SVG rings -->
 <svg width="0" height="0" style="position:absolute">
@@ -253,10 +338,22 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
     <ul class="nav-links">
       <li><a href="#problem">Problem</a></li>
       <li><a href="#try">Try It</a></li>
+      <li><a href="#ai-plan">AI Plan</a></li>
       <li><a href="#weekly">Your Week</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- Stats Banner -->
+<div class="stats-banner">
+  <div class="stats-banner-inner">
+    <div class="stat-item"><span class="stat-val" id="statPlans">&mdash;</span><span class="stat-label">plans generated</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><span class="stat-val" id="statAvg">&mdash;</span><span class="stat-label">avg potential monthly reduction</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><span class="stat-val" id="statVisitors">&mdash;</span><span class="stat-label">visitors served</span></div>
+  </div>
+</div>
 
 <!-- Hero -->
 <section class="hero wrap">
@@ -265,7 +362,7 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
       <div class="hero-badge">Built for young professionals in India</div>
       <h1>Check your spending<br><span class="grad">before you pay</span></h1>
       <p class="hero-sub">
-        That <strong>₹200 Blinkit order</strong> three times a week? That's <strong>₹2,400 a month</strong> you never planned for. Urge shows you the real cost before you tap "Pay."
+        That <strong>&#8377;200 Blinkit order</strong> three times a week? That's <strong>&#8377;2,400 a month</strong> you never planned for. Urge shows you the real cost before you tap "Pay."
       </p>
       <a href="#try" class="cta-btn">
         Try the fuel gauge
@@ -280,12 +377,12 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
             <div class="ph-logo">URGE</div>
             <div class="ph-week">This week</div>
           </div>
-          <div class="ph-amount"><span class="sym">₹</span>1,850</div>
-          <div class="ph-of">of ₹3,500 remaining</div>
+          <div class="ph-amount"><span class="sym">&#8377;</span>1,850</div>
+          <div class="ph-of">of &#8377;3,500 remaining</div>
           <div class="ph-bar-track"><div class="ph-bar-fill"></div></div>
           <div class="ph-meta">
             <span>4 days left</span>
-            <span class="accent">~₹462/day</span>
+            <span class="accent">~&#8377;462/day</span>
           </div>
           <div class="ph-chips">
             <span class="ph-chip">Food</span>
@@ -294,7 +391,7 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
             <span class="ph-chip">Other</span>
           </div>
           <div class="ph-input-row">
-            <div class="ph-input-box">₹ Enter amount</div>
+            <div class="ph-input-box">&#8377; Enter amount</div>
             <div class="ph-check-btn">Check</div>
           </div>
         </div>
@@ -307,11 +404,11 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
         <div class="widget-mock">
           <div class="widget-gauge">
             <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" class="track"/><circle cx="22" cy="22" r="18" class="fill"/></svg>
-            <div class="widget-amt">₹1.8k</div>
+            <div class="widget-amt">&#8377;1.8k</div>
           </div>
           <div class="widget-right">
-            <div class="wr-top">₹1,850 left</div>
-            <div class="wr-bot">4 days · ₹462/day</div>
+            <div class="wr-top">&#8377;1,850 left</div>
+            <div class="wr-bot">4 days · &#8377;462/day</div>
           </div>
         </div>
         <div class="app-icon-dot zepto"><svg viewBox="0 0 44 44"><rect width="44" height="44" rx="0" fill="#7b2ff7"/><text x="22" y="17" text-anchor="middle" fill="#fff" font-family="Inter,system-ui,sans-serif" font-size="7.5" font-weight="800">Zepto</text><path d="M14 24h16l-10 12h16" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -338,7 +435,7 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
       <p>Expense trackers tell you where money went after it's gone. You need a checkpoint before you pay, not a report after.</p>
     </div>
   </div>
-  <p class="prob-source">Based on a survey of 40 working professionals aged 22–28 across Bangalore, Delhi and Mumbai. Average self-reported impulse spending: ₹3,200–4,800/month, primarily on food delivery and quick commerce.</p>
+  <p class="prob-source">Based on a survey of 40 working professionals aged 22–28 across Bangalore, Delhi and Mumbai. Average self-reported impulse spending: &#8377;3,200–4,800/month, primarily on food delivery and quick commerce.</p>
 </section>
 
 <!-- Interactive gauge (moved up, before any explanation) -->
@@ -361,15 +458,15 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
     </div>
     <div class="gl-divider"></div>
     <div class="gl-gauge-head">
-      <div class="gl-remaining" id="glRemain"><span class="sym">₹</span><span id="glRemainVal">3,500</span></div>
-      <div class="gl-total" id="glTotal">of ₹3,500</div>
+      <div class="gl-remaining" id="glRemain"><span class="sym">&#8377;</span><span id="glRemainVal">3,500</span></div>
+      <div class="gl-total" id="glTotal">of &#8377;3,500</div>
     </div>
     <div class="gl-bar-track">
       <div class="gl-bar-fill healthy" id="glBar" style="width:100%"></div>
     </div>
     <div class="gl-meta">
       <div class="gl-chip"><span class="dot" id="glDot" style="background:var(--green)"></span> <span id="glDaysLabel">5 days left</span></div>
-      <div class="gl-perday" id="glPerday" style="color:var(--accent-l)">~₹700 / day</div>
+      <div class="gl-perday" id="glPerday" style="color:var(--accent-l)">~&#8377;700 / day</div>
     </div>
     <div>
       <div class="gl-check-title">Check a spend</div>
@@ -393,9 +490,102 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
         <div class="tally-pill tp-worth"><div class="tp-val" id="tWorth">0</div><div class="tp-label">Worth it</div></div>
         <div class="tally-pill tp-reduce"><div class="tp-val" id="tReduce">0</div><div class="tp-label">Reduced</div></div>
         <div class="tally-pill tp-not"><div class="tp-val" id="tNot">0</div><div class="tp-label">Not now</div></div>
-        <div class="tally-pill tp-saved"><div class="tp-val" id="tSaved">₹0</div><div class="tp-label">Reconsidered</div></div>
+        <div class="tally-pill tp-saved"><div class="tp-val" id="tSaved">&#8377;0</div><div class="tp-label">Reconsidered</div></div>
       </div>
       <div class="tally-summary" id="tallySummary"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI Plan Section -->
+<section id="ai-plan" class="ai-plan-section wrap">
+  <div style="text-align:center">
+    <div class="sec-label">AI-powered plan</div>
+    <h2 class="sec-title">Get a personalized spending plan</h2>
+    <p class="sec-desc" style="margin:0 auto">Tell us where your money goes. Our AI will identify potential reductions and build you a daily impulse budget.</p>
+  </div>
+  <div class="ai-plan-card">
+    <div class="ai-form-group">
+      <label for="aiPay">Monthly take-home pay</label>
+      <div class="ai-input-wrap">
+        <span class="rupee-prefix">&#8377;</span>
+        <input type="text" id="aiPay" inputmode="numeric" placeholder="e.g. 60,000" autocomplete="off">
+      </div>
+    </div>
+
+    <div style="margin-bottom:6px">
+      <div style="font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg3);margin-bottom:14px">How you spend it (%)</div>
+
+      <div class="ai-slider-group">
+        <div class="ai-slider-header">
+          <span class="ai-slider-label">Rent &amp; Utilities</span>
+          <span class="ai-slider-val" id="sliderValRent">30%</span>
+        </div>
+        <input type="range" class="ai-slider" id="sliderRent" min="0" max="100" value="30" data-category="rent">
+      </div>
+
+      <div class="ai-slider-group">
+        <div class="ai-slider-header">
+          <span class="ai-slider-label">Food &amp; Dining</span>
+          <span class="ai-slider-val" id="sliderValFood">20%</span>
+        </div>
+        <input type="range" class="ai-slider" id="sliderFood" min="0" max="100" value="20" data-category="food">
+      </div>
+
+      <div class="ai-slider-group">
+        <div class="ai-slider-header">
+          <span class="ai-slider-label">Transport</span>
+          <span class="ai-slider-val" id="sliderValTransport">10%</span>
+        </div>
+        <input type="range" class="ai-slider" id="sliderTransport" min="0" max="100" value="10" data-category="transport">
+      </div>
+
+      <div class="ai-slider-group">
+        <div class="ai-slider-header">
+          <span class="ai-slider-label">Shopping &amp; Quick Commerce</span>
+          <span class="ai-slider-val" id="sliderValShopping">15%</span>
+        </div>
+        <input type="range" class="ai-slider" id="sliderShopping" min="0" max="100" value="15" data-category="shopping">
+      </div>
+
+      <div class="ai-slider-group">
+        <div class="ai-slider-header">
+          <span class="ai-slider-label">Entertainment &amp; Subscriptions</span>
+          <span class="ai-slider-val" id="sliderValEntertainment">10%</span>
+        </div>
+        <input type="range" class="ai-slider" id="sliderEntertainment" min="0" max="100" value="10" data-category="entertainment">
+      </div>
+    </div>
+
+    <div class="ai-remaining ok" id="aiRemaining">
+      <span class="ai-rem-label">Remaining (unallocated)</span>
+      <span class="ai-rem-val" id="aiRemVal">15%</span>
+    </div>
+
+    <button class="ai-generate-btn" id="generateBtn" type="button">
+      <span id="generateBtnText">Generate Your Personalized Plan</span>
+      <div class="spinner" id="generateSpinner"></div>
+    </button>
+
+    <div class="ai-error" id="aiError"></div>
+
+    <div class="plan-result" id="planResult">
+      <div class="plan-summary" id="planSummary"></div>
+      <div class="plan-cuts" id="planCuts"></div>
+      <div class="plan-fuel-line" id="planFuelLine">
+        <div class="fuel-text" id="planFuelText"></div>
+      </div>
+      <div class="plan-totals">
+        <div class="plan-total-card">
+          <div class="pt-val" id="planMonthly"></div>
+          <div class="pt-label">Monthly amount identified</div>
+        </div>
+        <div class="plan-total-card daily">
+          <div class="pt-val" id="planDaily"></div>
+          <div class="pt-label">Daily impulse budget</div>
+        </div>
+      </div>
+      <div class="plan-disclaimer" id="planDisclaimer"></div>
     </div>
   </div>
 </section>
@@ -418,9 +608,9 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
         <div class="wp-ring-label">70%<span>used</span></div>
       </div>
       <div class="wp-stats">
-        <div class="wp-stat-row"><span class="wp-k">Budget</span><span class="wp-v">₹3,500</span></div>
-        <div class="wp-stat-row"><span class="wp-k">Spent</span><span class="wp-v">₹2,450</span></div>
-        <div class="wp-stat-row"><span class="wp-k">Remaining</span><span class="wp-v" style="color:var(--green)">₹1,050</span></div>
+        <div class="wp-stat-row"><span class="wp-k">Budget</span><span class="wp-v">&#8377;3,500</span></div>
+        <div class="wp-stat-row"><span class="wp-k">Spent</span><span class="wp-v">&#8377;2,450</span></div>
+        <div class="wp-stat-row"><span class="wp-k">Remaining</span><span class="wp-v" style="color:var(--green)">&#8377;1,050</span></div>
         <div class="wp-stat-row"><span class="wp-k">Total checks</span><span class="wp-v">11</span></div>
       </div>
     </div>
@@ -431,7 +621,7 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
       <div class="wp-dec d-not"><div class="wd-val">3</div><div class="wd-label">Not now</div></div>
     </div>
     <div class="wp-bottom">
-      You reconsidered <strong>₹1,340</strong> this week through Reduce and Not now decisions.
+      You reconsidered <strong>&#8377;1,340</strong> this week through Reduce and Not now decisions.
     </div>
   </div>
 </section>
@@ -440,7 +630,7 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
 <div class="founder wrap">
   <div class="founder-line">
     <div class="founder-avatar">VP</div>
-    <div class="founder-text"><strong>Built by someone</strong> who spent ₹7,200 on Swiggy last month and only found out from the credit card bill.</div>
+    <div class="founder-text"><strong>Built by someone</strong> who spent &#8377;7,200 on Swiggy last month and only found out from the credit card bill.</div>
   </div>
 </div>
 
@@ -467,8 +657,8 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
 
 <script>
 (function(){
+  // ===== Indian number formatting =====
   function num(el){return parseInt((el.value||'0').replace(/[^0-9]/g,''),10)||0}
-  // Manual Indian number format (avoids locale issues in sandboxed environments)
   function fmt(n){
     n=Math.abs(n);
     var s=String(n);
@@ -482,6 +672,7 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
   }
   function fmtR(n){return(n<0?'-₹':'₹')+fmt(Math.abs(n))}
 
+  // ===== Interactive Gauge (existing) =====
   var budgetEl=document.getElementById('gBudget');
   var daysEl=document.getElementById('gDays');
   var amountEl=document.getElementById('gAmount');
@@ -550,7 +741,6 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
     }
   }
 
-  // Format budget on type
   budgetEl.addEventListener('input',function(){
     var raw=budgetEl.value.replace(/[^0-9]/g,'');
     if(raw){
@@ -565,7 +755,6 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
     updateGauge();
   });
 
-  // Check spend
   var pendingAmount=0;
   checkBtn.addEventListener('click',function(){
     var spend=num(amountEl);
@@ -590,7 +779,6 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
 
   amountEl.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();checkBtn.click()}});
 
-  // Worth it
   document.getElementById('btnWorth').addEventListener('click',function(){
     totalSpent+=pendingAmount;
     tally.worth++;
@@ -599,12 +787,10 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
     updateGauge();updateTally();
   });
 
-  // Reduce — suggests keeping 60% of the remaining per-day rate
   document.getElementById('btnReduce').addEventListener('click',function(){
     var days=Math.max(1,num(daysEl));
     var cur=remaining();
     var perdayCur=cur/days;
-    // Suggest an amount that keeps at least perdayCur intact
     var suggested=Math.min(pendingAmount,Math.round(perdayCur*0.8));
     suggested=Math.max(suggested,Math.round(pendingAmount*0.5));
     var savedAmt=pendingAmount-suggested;
@@ -616,7 +802,6 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
     updateGauge();updateTally();
   });
 
-  // Not now
   document.getElementById('btnNot').addEventListener('click',function(){
     tally.not++;
     tally.saved+=pendingAmount;
@@ -634,5 +819,196 @@ footer .logo-sm{font-weight:700;font-size:.88rem;background:var(--grad);-webkit-
   });
 
   updateGauge();
+
+  // ===== Stats Banner =====
+  function loadStats(){
+    fetch('/api/stats').then(function(r){return r.json()}).then(function(data){
+      if(data.totalPlans!=null) document.getElementById('statPlans').textContent=fmt(data.totalPlans);
+      if(data.avgReduction!=null) document.getElementById('statAvg').textContent='₹'+fmt(Math.round(data.avgReduction));
+      if(data.uniqueVisitors!=null) document.getElementById('statVisitors').textContent=fmt(data.uniqueVisitors);
+    }).catch(function(){});
+  }
+  loadStats();
+
+  // ===== AI Plan Section =====
+  // Visitor ID
+  function getVisitorId(){
+    var id;
+    try{ id=localStorage.getItem('urge_visitor_id'); }catch(e){}
+    if(!id){
+      id='v_'+Math.random().toString(36).slice(2)+Date.now().toString(36);
+      try{ localStorage.setItem('urge_visitor_id',id); }catch(e){}
+    }
+    return id;
+  }
+
+  // Slider logic
+  var sliders={
+    rent:document.getElementById('sliderRent'),
+    food:document.getElementById('sliderFood'),
+    transport:document.getElementById('sliderTransport'),
+    shopping:document.getElementById('sliderShopping'),
+    entertainment:document.getElementById('sliderEntertainment')
+  };
+  var sliderVals={
+    rent:document.getElementById('sliderValRent'),
+    food:document.getElementById('sliderValFood'),
+    transport:document.getElementById('sliderValTransport'),
+    shopping:document.getElementById('sliderValShopping'),
+    entertainment:document.getElementById('sliderValEntertainment')
+  };
+
+  function updateSliders(){
+    var total=0;
+    for(var k in sliders){
+      var v=parseInt(sliders[k].value,10);
+      sliderVals[k].textContent=v+'%';
+      total+=v;
+    }
+    var rem=100-total;
+    var remEl=document.getElementById('aiRemVal');
+    var remBox=document.getElementById('aiRemaining');
+    remEl.textContent=rem+'%';
+    remBox.classList.remove('ok','warn','over');
+    if(rem<0) remBox.classList.add('over');
+    else if(rem<10) remBox.classList.add('warn');
+    else remBox.classList.add('ok');
+  }
+
+  for(var k in sliders){
+    sliders[k].addEventListener('input',updateSliders);
+  }
+
+  // Format pay input
+  var payInput=document.getElementById('aiPay');
+  payInput.addEventListener('input',function(){
+    var raw=payInput.value.replace(/[^0-9]/g,'');
+    if(raw){
+      payInput.value=fmt(parseInt(raw,10));
+    }
+  });
+
+  // Generate plan
+  var generateBtn=document.getElementById('generateBtn');
+  var generateBtnText=document.getElementById('generateBtnText');
+  var generateSpinner=document.getElementById('generateSpinner');
+  var aiError=document.getElementById('aiError');
+  var planResult=document.getElementById('planResult');
+
+  generateBtn.addEventListener('click',function(){
+    aiError.classList.remove('show');
+    aiError.textContent='';
+
+    var pay=parseInt((payInput.value||'0').replace(/[^0-9]/g,''),10);
+    if(!pay||pay<1000){
+      aiError.textContent='Please enter a valid monthly take-home pay (at least ₹1,000).';
+      aiError.classList.add('show');
+      return;
+    }
+
+    var rentPct=parseInt(sliders.rent.value,10);
+    var foodPct=parseInt(sliders.food.value,10);
+    var transportPct=parseInt(sliders.transport.value,10);
+    var shoppingPct=parseInt(sliders.shopping.value,10);
+    var entertainmentPct=parseInt(sliders.entertainment.value,10);
+    var totalPct=rentPct+foodPct+transportPct+shoppingPct+entertainmentPct;
+
+    if(totalPct>100){
+      aiError.textContent='Your category percentages add up to '+totalPct+'%. Please adjust them to total 100% or less.';
+      aiError.classList.add('show');
+      return;
+    }
+
+    // Disable button, show spinner
+    generateBtn.disabled=true;
+    generateBtnText.textContent='Generating...';
+    generateSpinner.classList.add('show');
+    planResult.classList.remove('show');
+
+    var body={
+      takeHomePay:pay,
+      rent:rentPct,
+      food:foodPct,
+      transport:transportPct,
+      shopping:shoppingPct,
+      entertainment:entertainmentPct,
+      visitorId:getVisitorId()
+    };
+
+    fetch('/api/generate-plan',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){
+      if(r.ok) return r.json();
+      if(r.status===429) return r.json().then(function(d){throw{type:'rate',msg:d.error||"You've used all 5 free plans. Come back tomorrow!"}});
+      if(r.status===400) return r.json().then(function(d){throw{type:'validation',msg:d.error||'Invalid input. Please check your values.'}});
+      throw{type:'other'};
+    }).then(function(data){
+      renderPlan(data.plan);
+      // Update stats banner
+      if(data.stats){
+        if(data.stats.totalPlans!=null) document.getElementById('statPlans').textContent=fmt(data.stats.totalPlans);
+        if(data.stats.avgReduction!=null) document.getElementById('statAvg').textContent='₹'+fmt(Math.round(data.stats.avgReduction));
+        if(data.stats.uniqueVisitors!=null) document.getElementById('statVisitors').textContent=fmt(data.stats.uniqueVisitors);
+      }
+    }).catch(function(err){
+      if(err&&err.type==='rate'){
+        aiError.textContent=err.msg;
+      }else if(err&&err.type==='validation'){
+        aiError.textContent=err.msg;
+      }else{
+        aiError.textContent='Something went wrong. Please try again.';
+      }
+      aiError.classList.add('show');
+    }).finally(function(){
+      generateBtn.disabled=false;
+      generateBtnText.textContent='Generate Your Personalized Plan';
+      generateSpinner.classList.remove('show');
+    });
+  });
+
+  var cutColors=['#8b5cf6','#34d399','#fbbf24','#f87171','#38bdf8'];
+
+  function renderPlan(plan){
+    // Summary
+    document.getElementById('planSummary').textContent=plan.summary||'';
+
+    // Cuts
+    var cutsEl=document.getElementById('planCuts');
+    cutsEl.innerHTML='';
+    if(plan.cuts&&plan.cuts.length){
+      plan.cuts.forEach(function(cut,i){
+        var card=document.createElement('div');
+        card.className='cut-card';
+        card.innerHTML='<div class="cut-card-header"><span class="cut-dot" style="background:'+cutColors[i%cutColors.length]+'"></span><span class="cut-category">'+escHtml(cut.category)+'</span></div>'
+          +'<div class="cut-action">'+escHtml(cut.action)+'</div>'
+          +'<div class="cut-amount">₹'+fmt(Math.round(cut.monthlyReduction))+'/month potential reduction</div>';
+        cutsEl.appendChild(card);
+      });
+    }
+
+    // Fuel gauge line
+    document.getElementById('planFuelText').textContent=plan.fuelGaugeLine||'';
+
+    // Totals
+    document.getElementById('planMonthly').textContent='₹'+fmt(Math.round(plan.monthlyAmountIdentified||0));
+    document.getElementById('planDaily').textContent='₹'+fmt(Math.round(plan.dailyImpulseBudget||0))+'/day';
+
+    // Disclaimer
+    document.getElementById('planDisclaimer').textContent=plan.disclaimer||'';
+
+    planResult.classList.add('show');
+    // Scroll to result
+    planResult.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function escHtml(s){
+    var d=document.createElement('div');
+    d.textContent=s;
+    return d.innerHTML;
+  }
 })();
 </script>
+</body>
+</html>
